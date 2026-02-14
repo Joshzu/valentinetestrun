@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SORRY IF CORNY HAHAHAA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry If Corny 😅</title>
 
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -17,164 +16,173 @@
 
 body{
     height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    background: linear-gradient(135deg,#fbc2eb,#fcd6e7,#f8e1f4);
+    background:linear-gradient(135deg,#fbc2eb,#fcd6e7,#f8e1f4);
     font-family:'Poppins',sans-serif;
+    overflow:hidden;
 }
 
-
+/* Floating hearts */
 .heart{
     position:absolute;
-    width:18px;
-    height:18px;
+    width:16px;
+    height:16px;
     background:rgba(255,105,180,0.7);
     transform:rotate(45deg);
     animation: floatUp linear infinite;
-    border-radius:4px;
 }
 
-.heart:before,
-.heart:after{
+.heart::before,
+.heart::after{
     content:'';
     position:absolute;
-    width:18px;
-    height:18px;
+    width:16px;
+    height:16px;
     background:rgba(255,105,180,0.7);
     border-radius:50%;
 }
 
-.heart:before{ top:-9px; left:0; }
-.heart:after{ left:-9px; top:0; }
+.heart::before{ top:-8px; left:0; }
+.heart::after{ left:-8px; top:0; }
 
 @keyframes floatUp{
-    0%{
-        transform:translateY(0) rotate(45deg);
-        opacity:0.8;
-    }
-    100%{
-        transform:translateY(-120vh) rotate(45deg);
-        opacity:0;
-    }
+    0%{ transform:translateY(0) rotate(45deg); opacity:0.8; }
+    100%{ transform:translateY(-120vh) rotate(45deg); opacity:0; }
 }
 
-/* Luxury Glass Card */
-.card{
+/* Envelope */
+.envelope{
+    width:340px;
+    height:220px;
+    background:#fff;
+    position:relative;
+    border-radius:12px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.2);
+    overflow:hidden;
+}
+
+/* Envelope flap */
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#f7b7c9;
+    clip-path:polygon(0 0, 100% 0, 50% 55%);
+    transition:0.8s ease;
+    transform-origin:top;
+    z-index:3;
+}
+
+/* Letter */
+.letter{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
     width:90%;
-    max-width:380px;
-    padding:40px 25px;
+    height:80%;
+    background:rgba(255,255,255,0.95);
+    border-radius:12px;
+    padding:25px;
     text-align:center;
-    border-radius:25px;
-    background:rgba(255,255,255,0.25);
-    backdrop-filter:blur(20px);
-    box-shadow:0 20px 50px rgba(0,0,0,0.15);
-    animation:fadeIn 1s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    transition:0.8s ease;
+    z-index:2;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.card h1{
+.letter h1{
     font-family:'Playfair Display',serif;
-    font-size:26px;
     color:#b76e79;
-    margin-bottom:25px;
+    font-size:22px;
+    margin-bottom:20px;
 }
 
-.buttons{
-    margin-top:20px;
-}
-
-button{
-    padding:12px 28px;
+.buttons button{
+    padding:10px 26px;
     border:none;
-    border-radius:50px;
-    font-size:16px;
-    margin:10px;
+    border-radius:30px;
+    margin:8px;
+    font-size:15px;
     cursor:pointer;
-    transition:0.3s ease;
 }
-
 
 .yes{
     background:linear-gradient(45deg,#ff4e78,#ff758c);
-    color:white;
-    box-shadow:0 5px 20px rgba(255,78,120,0.5);
+    color:#fff;
 }
-
-.yes:active{
-    transform:scale(1.1);
-}
-
 
 .no{
-    background:white;
+    background:#fff;
     color:#b76e79;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    position:relative;
 }
 
-
-.message{
-    margin-top:25px;
-    font-size:20px;
-    font-family:'Playfair Display',serif;
-    color:#ff4e78;
+/* Thank you message */
+.thankyou{
     display:none;
-    animation:popUp 0.6s ease forwards;
+    font-family:'Playfair Display',serif;
+    font-size:24px;
+    color:#ff4e78;
+    margin-top:30px;
 }
 
-@keyframes popUp{
-    from{opacity:0; transform:scale(0.7);}
-    to{opacity:1; transform:scale(1);}
+/* Open animation */
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+.open .letter{
+    transform:translate(-50%,-30px);
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-    <h1>Hi, Anj! Will You Be My Valentine?  💖</h1>
+<div class="envelope" id="env">
+    <div class="flap"></div>
 
-    <div class="buttons">
-        <button class="yes" onclick="sayYes()">Yes 💘</button>
-        <button class="no" onclick="moveNo(this)">No 💔</button>
-    </div>
+    <div class="letter">
+        <h1>Hi, Anj 💖<br>Will You Be My Valentine?</h1>
 
-    <div class="message" id="msg">
-        Thank you xo much &lt;3
+        <div class="buttons" id="btns">
+            <button class="yes" onclick="sayYes()">Yes 💘</button>
+            <button class="no" onclick="moveNo(this)">No 💔</button>
+        </div>
+
+        <div class="thankyou" id="thanks">
+            THANK YOU XO MUCH 💕
+        </div>
     </div>
 </div>
 
 <script>
-
-for(let i=0;i<25;i++){
+/* Hearts */
+for(let i=0;i<20;i++){
     let heart=document.createElement("div");
     heart.className="heart";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(Math.random()*4+4)+"s";
     heart.style.bottom="-20px";
+    heart.style.animationDuration=(Math.random()*4+4)+"s";
     document.body.appendChild(heart);
 }
 
-
+/* Yes button */
 function sayYes(){
-    document.getElementById("msg").style.display="block";
+    document.getElementById("env").classList.add("open");
+    document.getElementById("btns").style.display="none";
+    document.getElementById("thanks").style.display="block";
 }
 
-
+/* No button dodge */
 function moveNo(btn){
     btn.style.position="absolute";
-    btn.style.top=Math.random()*80+"vh";
-    btn.style.left=Math.random()*80+"vw";
-
-    setTimeout(()=>{
-        btn.style.display="none";
-    },1000);
+    btn.style.top=Math.random()*70+"%";
+    btn.style.left=Math.random()*70+"%";
 }
 </script>
 
