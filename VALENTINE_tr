@@ -1,4 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💌</title>
 
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle at top,#ffe0ec,#f9b6c8);
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+}
+
+/* ===== Floating Hearts ===== */
+.heart{
+    position:absolute;
+    width:14px;
+    height:14px;
+    background:rgba(255,105,180,0.6);
+    transform:rotate(45deg);
+    animation:floatUp linear infinite;
+}
+
+.heart::before,
+.heart::after{
+    content:'';
+    position:absolute;
+    width:14px;
+    height:14px;
+    background:rgba(255,105,180,0.6);
+    border-radius:50%;
+}
+
+.heart::before{ top:-7px; left:0; }
+.heart::after{ left:-7px; top:0; }
+
+@keyframes floatUp{
+    0%{ transform:translateY(0) rotate(45deg); opacity:0.8; }
+    100%{ transform:translateY(-120vh) rotate(45deg); opacity:0; }
+}
+
+/* ===== Sparkles ===== */
+.spark{
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:rgba(255,255,255,0.9);
+    border-radius:50%;
+    animation:twinkle 2.5s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+    0%,100%{ opacity:0.3; transform:scale(0.6); }
+    50%{ opacity:1; transform:scale(1); }
+}
+
+/* ===== Title ===== */
+.title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(22px,6vw,30px);
+    color:#b85c7a;
+    margin-bottom:22px;
+    text-align:center;
+}
+
+/* ===== Envelope ===== */
+.envelope{
+    width:min(90vw,360px);
+    height:220px;
+    background:#fff;
+    border-radius:18px;
+    position:relative;
+    box-shadow:0 30px 70px rgba(0,0,0,0.22);
+    overflow:hidden;
+}
+
+/* Flap */
+.flap{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,#f5a6bd,#f3b8ca);
+    clip-path:polygon(0 0, 100% 0, 50% 55%);
+    transform-origin:top;
+    transition:1s cubic-bezier(.4,0,.2,1);
+    z-index:3;
+}
+
+/* Letter */
+.letter{
+    position:absolute;
+    bottom:-100%;
+    left:50%;
+    transform:translateX(-50%);
+    width:88%;
+    height:72%;
+    background:#fff;
+    border-radius:14px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.18);
+    transition:1s cubic-bezier(.4,0,.2,1);
+    z-index:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Handwritten text */
+.letter h2{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(26px,7vw,34px);
+    color:#ff4e78;
+    line-height:1.3;
+}
+
+/* Open state */
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+.open .letter{
+    bottom:18px;
+}
+
+/* ===== Buttons ===== */
+.buttons{
+    margin-top:28px;
+}
+
+button{
+    padding:12px 34px;
+    border:none;
+    border-radius:50px;
+    font-size:16px;
+    margin:8px;
+    cursor:pointer;
+}
+
+.yes{
+    background:linear-gradient(45deg,#ff4e78,#ff7b9c);
+    color:#fff;
+    box-shadow:0 6px 20px rgba(255,78,120,0.45);
+}
+
+.no{
+    background:#fff;
+    color:#b85c7a;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    position:relative;
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">Hi, Anj! Will You Be My Valentine? </div>
+
+<div class="envelope" id="env">
+    <div class="flap"></div>
+    <div class="letter">
+        <h2>THANK YOU XO MUCHH xD </h2>
+    </div>
+</div>
+
+<div class="buttons" id="btns">
+    <button class="yes" onclick="openEnvelope()">Yes 💘</button>
+    <button class="no" onclick="moveNo(this)">No 💔</button>
+</div>
+
+<script>
+/* Hearts */
+for(let i=0;i<28;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.bottom="-20px";
+    h.style.animationDuration=(Math.random()*4+5)+"s";
+    document.body.appendChild(h);
+}
+
+/* Sparkles */
+for(let i=0;i<20;i++){
+    let s=document.createElement("div");
+    s.className="spark";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    s.style.animationDelay=Math.random()*2+"s";
+    document.body.appendChild(s);
+}
+
+/* Yes */
+function openEnvelope(){
+    document.getElementById("env").classList.add("open");
+    document.getElementById("btns").style.display="none";
+    document.querySelector(".title").style.display="none";
+}
+
+/* No dodge */
+function moveNo(btn){
+    btn.style.position="absolute";
+    btn.style.top=Math.random()*70+"vh";
+    btn.style.left=Math.random()*70+"vw";
+}
 </script>
 
 </body>
