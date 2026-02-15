@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine 💌</title>
+<title>KINORNI AH HAHAHAHA</title>
 
-<!-- Fonts -->
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
 <style>
@@ -26,7 +26,7 @@ body{
     overflow:hidden;
 }
 
-/* ===== Floating Hearts ===== */
+
 .heart{
     position:absolute;
     width:14px;
@@ -54,7 +54,7 @@ body{
     100%{ transform:translateY(-120vh) rotate(45deg); opacity:0; }
 }
 
-/* ===== Sparkles ===== */
+
 .spark{
     position:absolute;
     width:5px;
@@ -69,7 +69,7 @@ body{
     50%{ opacity:1; transform:scale(1); }
 }
 
-/* ===== Title ===== */
+
 .title{
     font-family:'Playfair Display',serif;
     font-size:clamp(22px,6vw,30px);
@@ -78,7 +78,7 @@ body{
     text-align:center;
 }
 
-/* ===== Envelope ===== */
+
 .envelope{
     width:min(90vw,360px);
     height:220px;
@@ -89,7 +89,7 @@ body{
     overflow:hidden;
 }
 
-/* Flap */
+
 .flap{
     position:absolute;
     inset:0;
@@ -100,7 +100,7 @@ body{
     z-index:3;
 }
 
-/* Letter */
+
 .letter{
     position:absolute;
     bottom:-100%;
@@ -120,7 +120,7 @@ body{
     align-items:center;
 }
 
-/* Handwritten text */
+
 .letter h2{
     font-family:'Dancing Script',cursive;
     font-size:clamp(26px,7vw,34px);
@@ -128,7 +128,6 @@ body{
     line-height:1.3;
 }
 
-/* Open state */
 .open .flap{
     transform:rotateX(180deg);
 }
@@ -137,7 +136,7 @@ body{
     bottom:18px;
 }
 
-/* ===== Buttons ===== */
+
 .buttons{
     margin-top:28px;
 }
@@ -168,22 +167,22 @@ button{
 
 <body>
 
-<div class="title">Will You Be My Valentine? 💖</div>
+<div class="title">Hi, Anj! Will You Be My Valentine? </div>
 
 <div class="envelope" id="env">
     <div class="flap"></div>
     <div class="letter">
-        <h2>THANK YOU XO MUCHH &lt;3 💕</h2>
+        <h2>THANK YOU XO MUCHH HAHA!</h2>
     </div>
 </div>
 
 <div class="buttons" id="btns">
-    <button class="yes" onclick="openEnvelope()">Yes 💘</button>
-    <button class="no" onclick="moveNo(this)">No 💔</button>
+    <button class="yes" onclick="openEnvelope()">Yes 👍</button>
+    <button class="no" onclick="moveNo(this)">No 👎</button>
 </div>
 
 <script>
-/* Hearts */
+
 for(let i=0;i<28;i++){
     let h=document.createElement("div");
     h.className="heart";
@@ -193,7 +192,7 @@ for(let i=0;i<28;i++){
     document.body.appendChild(h);
 }
 
-/* Sparkles */
+
 for(let i=0;i<20;i++){
     let s=document.createElement("div");
     s.className="spark";
@@ -203,14 +202,14 @@ for(let i=0;i<20;i++){
     document.body.appendChild(s);
 }
 
-/* Yes */
+
 function openEnvelope(){
     document.getElementById("env").classList.add("open");
     document.getElementById("btns").style.display="none";
     document.querySelector(".title").style.display="none";
 }
 
-/* No dodge */
+
 function moveNo(btn){
     btn.style.position="absolute";
     btn.style.top=Math.random()*70+"vh";
@@ -220,6 +219,7 @@ function moveNo(btn){
 
 </body>
 </html>
+
 
 
 
